@@ -49,7 +49,7 @@ services:
       - namenode
       - datanode1
       - datanode2
-      - datanode3
+      # - datanode3
     env_file:
       - ./hadoop.env
     ports:
@@ -111,17 +111,17 @@ services:
     networks:
       - hadoop_network
 
-  datanode3:
-    build: ./datanode
-    container_name: datanode3
-    depends_on:
-      - namenode
-    volumes:
-      - hadoop_datanode3:/hadoop/dfs/data
-    env_file:
-      - ./hadoop.env
-    networks:
-      - hadoop_network
+  # datanode3:
+  #   build: ./datanode
+  #   container_name: datanode3
+  #   depends_on:
+  #     - namenode
+  #   volumes:
+  #     - hadoop_datanode3:/hadoop/dfs/data
+  #   env_file:
+  #     - ./hadoop.env
+  #   networks:
+  #     - hadoop_network
 
   postgres:
     image: postgres:13
@@ -162,7 +162,7 @@ volumes:
   hadoop_namenode:
   hadoop_datanode1:
   hadoop_datanode2:
-  hadoop_datanode3:
+  # hadoop_datanode3:
   hadoop_historyserver:
 
 
