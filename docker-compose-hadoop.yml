@@ -5,10 +5,10 @@ services:
     build: ./namenode
     container_name: namenode
     volumes:
-      - hadoop_namenode:/hadoop/dfs/name
-      - ./data/:/hadoop-data/input
-      - ./map_reduce/:/hadoop-data/map_reduce
-      - ./requirements.txt:/hadoop-data/requirements.txt
+      - hadoop_namenode:/hadoop/dfs/name:z
+      - ./data/:/hadoop-data/input:z
+      - ./map_reduce/:/hadoop-data/map_reduce:z
+      - ./requirements.txt:/hadoop-data/requirements.txt:z
     environment:
       - CLUSTER_NAME=test
     env_file:
@@ -43,7 +43,7 @@ services:
       - datanode1
       - datanode2
     volumes:
-      - hadoop_historyserver:/hadoop/yarn/timeline
+      - hadoop_historyserver:/hadoop/yarn/timeline:z
     env_file:
       - ./hadoop.env
     ports:
@@ -71,7 +71,7 @@ services:
     depends_on:
       - namenode
     volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+      - hadoop_datanode1:/hadoop/dfs/data:z
     env_file:
       - ./hadoop.env
     networks:
@@ -83,7 +83,7 @@ services:
     depends_on:
       - namenode
     volumes:
-      - hadoop_datanode2:/hadoop/dfs/data
+      - hadoop_datanode2:/hadoop/dfs/data:z
     env_file:
       - ./hadoop.env
     networks:
@@ -94,7 +94,7 @@ services:
   #   depends_on:
   #     - namenode
   #   volumes:
-  #     - hadoop_datanode3:/hadoop/dfs/data
+  #     - hadoop_datanode3:/hadoop/dfs/data:z
   #   env_file:
   #     - ./hadoop.env
   #   networks:
