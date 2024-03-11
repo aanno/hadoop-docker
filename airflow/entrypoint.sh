@@ -108,9 +108,16 @@ if [ "$AIRFLOW__CORE__EXECUTOR" = "CeleryExecutor" ]; then
   wait_for_port "Redis" "$REDIS_HOST" "$REDIS_PORT"
 fi
 
+# ?
+# `db init` is deprecated.  Use `db migrate` instead to migrate the db and/or 
+# airflow connections create-default-connections to create the default connections
+# airflow db init
+touch /home/airflow/logs/test.txt
+
 case "$1" in
   webserver)
-    airflow initdb
+    # airflow initdb
+    airflow db init
     if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ] || [ "$AIRFLOW__CORE__EXECUTOR" = "SequentialExecutor" ]; then
       # With the "Local" and "Sequential" executors it should all run in one container.
       airflow scheduler &
