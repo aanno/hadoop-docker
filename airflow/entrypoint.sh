@@ -108,11 +108,6 @@ if [ "$AIRFLOW__CORE__EXECUTOR" = "CeleryExecutor" ]; then
   wait_for_port "Redis" "$REDIS_HOST" "$REDIS_PORT"
 fi
 
-# ?
-# `db init` is deprecated.  Use `db migrate` instead to migrate the db and/or 
-# airflow connections create-default-connections to create the default connections
-# touch /home/airflow/logs/test.txt
-# airflow db init || true
 TEST=`airflow users list`
 if [ $TEST = "No data found" ]; then
   MUST_INIT=1
