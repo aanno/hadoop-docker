@@ -18,19 +18,19 @@ default_args = {
 with DAG('avg_product_price', default_args=default_args, schedule_interval=None, catchup=False) as dag:
 
     start = BashOperator(
-        task_id='start_avg_product_price',
-        bash_command='hadoop fs -mkdir -p hdfs://namenode:8020/user/root/input; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
+        task_id='start',
+        bash_command='hadoop fs -mkdir -p hdfs://namenode:8020/user/root/input; hadoop fs -mkdir -p hdfs://namenode:8020/user/root/output; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
     )
 
     spark_submit = SparkSubmitOperator(
-        task_id='spark_submit_avg_product_price',
+        task_id='spark_submit',
         conn_id='spark-hadoop',
         application="/hadoop-data/map_reduce/spark/average_price.py"
     )
 
     end = BashOperator(
-        task_id='end_avg_product_price',
-        bash_command='hadoop fs -copyToLocal hdfs://namenode:8020/user/root/output/average_price.csv /home/airflow/output/; exit 0'
+        task_id='end',
+        bash_command='hadoop fs -copyToLocal -f hdfs://namenode:8020/user/root/output/* /home/airflow/output/; exit 0'
     )
 
     start >> spark_submit >> end

@@ -18,18 +18,18 @@ default_args = {
 with DAG('lowest_rated_movies', default_args=default_args, schedule_interval=None, catchup=False) as dag:
 
     start = BashOperator(
-        task_id='start_lowest_rated_movies',
-        bash_command='hadoop fs -mkdir -p hdfs://namenode:8020/user/root/input; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
+        task_id='start',
+        bash_command='hadoop fs -mkdir -p hdfs://namenode:8020/user/root/input; hadoop fs -mkdir -p hdfs://namenode:8020/user/root/output; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
     )
 
     spark_submit = SparkSubmitOperator(
-        task_id='spark_submit_lowest_rated_movies',
+        task_id='spark_submit',
         conn_id='spark-hadoop',
         application="/hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py"
     )
 
     end = DummyOperator(
-        task_id='end_lowest_rated_movies',
+        task_id='end',
     )
 
     start >> spark_submit >> end
