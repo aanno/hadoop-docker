@@ -68,7 +68,7 @@ RUN set -ex \
     && apt-get clean \
     && rm -rf \
     /var/lib/apt/lists/* \
-    /tmp/* \
+    # /tmp/* \
     /var/tmp/* \
     /usr/share/man \
     /usr/share/doc \

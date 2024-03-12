@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ../cluster.env
+ln -s ../tmp . || true
 
 . "$SPARK_HOME/bin/load-spark-env.sh"
 # When the spark work_load is master run class org.apache.spark.deploy.master.Master
