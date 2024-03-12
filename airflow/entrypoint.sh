@@ -111,13 +111,22 @@ fi
 # ?
 # `db init` is deprecated.  Use `db migrate` instead to migrate the db and/or 
 # airflow connections create-default-connections to create the default connections
-# airflow db init
-touch /home/airflow/logs/test.txt
+# touch /home/airflow/logs/test.txt
+# airflow db init || true
+TEST=`airflow users list`
+if [ $TEST = "No data found" ]; then
+  MUST_INIT=1
+else
+  MUST_INIT=0
+fi
 
 case "$1" in
   webserver)
-    # airflow initdb
-    airflow db init
+    test $MUST_INIT -ne 0 && \
+      (airflow db init \
+      && airflow db upgrade \
+      && airflow users create --role Admin --username airflow --password airflow \
+      --email airflow@airflow.com --firstname airflow --lastname airflow)
     if [ "$AIRFLOW__CORE__EXECUTOR" = "LocalExecutor" ] || [ "$AIRFLOW__CORE__EXECUTOR" = "SequentialExecutor" ]; then
       # With the "Local" and "Sequential" executors it should all run in one container.
       airflow scheduler &
