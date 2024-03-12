@@ -1,6 +1,6 @@
 version: "2.1"
 x-airflow-common: &airflow-common
-  image: ${AIRFLOW_IMAGE_NAME:-hadoop-base:3.3.6}
+  image: ${AIRFLOW_IMAGE_NAME:-docker.io/hadoop-base:3.3.6}
   environment:
     - AIRFLOW_HOME=/home/airflow
     - AIRFLOW__CORE_dags_folder=/home/airflow/dags
@@ -25,6 +25,7 @@ x-airflow-common: &airflow-common
 
 services:
   namenode:
+    image: localhost/namenode
     build: ./namenode
     container_name: namenode
     volumes:
@@ -42,6 +43,7 @@ services:
       - hadoop_network
 
   resourcemanager:
+    image: localhost/resourcemanager
     build: ./resourcemanager
     container_name: resourcemanager
     restart: on-failure
@@ -58,6 +60,7 @@ services:
       - hadoop_network
 
   historyserver:
+    image: localhost/historyserver
     build: ./historyserver
     container_name: historyserver
     depends_on:
@@ -74,6 +77,7 @@ services:
       - hadoop_network
 
   nodemanager1:
+    image: localhost/nodemanager
     build: ./nodemanager
     container_name: nodemanager1
     depends_on:
@@ -88,6 +92,7 @@ services:
       - hadoop_network
 
   datanode1:
+    image: localhost/datanode
     build: ./datanode
     container_name: datanode1
     depends_on:
@@ -100,6 +105,7 @@ services:
       - hadoop_network
 
   datanode2:
+    image: localhost/datanode
     build: ./datanode
     container_name: datanode2
     depends_on:
@@ -112,6 +118,7 @@ services:
       - hadoop_network
 
   # datanode3:
+  #   image: localhost/datanode
   #   build: ./datanode
   #   container_name: datanode3
   #   depends_on:
@@ -124,7 +131,7 @@ services:
   #     - hadoop_network
 
   postgres:
-    image: postgres:13
+    image: docker.io/postgres:13
     environment:
       - POSTGRES_USER=airflow
       - POSTGRES_PASSWORD=airflow

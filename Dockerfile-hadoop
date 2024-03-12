@@ -1,6 +1,6 @@
-FROM openjdk:11-jdk AS jdk
+FROM docker.io/openjdk:11-jdk AS jdk
 
-FROM python:3.11
+FROM docker.io/python:3.11
 
 USER root
 

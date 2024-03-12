@@ -14,7 +14,7 @@ This is just for learning intention, not recomended for production. Use Hortonwo
 
 1. Clone this repos to your project directory, and `cd hadoop-docker`
 2. If you are in Linux/MAC Just simply run `./run_cluster.sh`
-3. If you are in Windows try run this command `docker build -t hadoop-base:3.3.6 . && docker-compose up`
+3. If you are in Windows try run this command `docker build -t localhost/hadoop-base:3.3.6 . && docker-compose up`
 
 ## How to run MapReduce Job
 
