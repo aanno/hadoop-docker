@@ -70,8 +70,9 @@ Found 5 items
 $ hadoop fs -copyToLocal hdfs://namenode:8020/user/root/output/average_price.csv output/
 ```
 
-
 ```bash
+park-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py
+spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/average_price.py
 ```
 
 

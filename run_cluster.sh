@@ -3,7 +3,7 @@
 source cluster.env
 
 # containers write into logs and output
-chmod -R a+w log output
+chmod -R a+w logs output
 
 # create new network
 $DOCKER network create hadoop_network

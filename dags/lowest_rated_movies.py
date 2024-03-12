@@ -19,7 +19,7 @@ with DAG('lowest_rated_movies', default_args=default_args, schedule_interval=Non
 
     start = BashOperator(
         task_id='start_lowest_rated_movies',
-        bash_command='hadoop fs -mkdir hdfs://namenode:8020/user/root/input; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
+        bash_command='hadoop fs -mkdir -p hdfs://namenode:8020/user/root/input; hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/; exit 0'
     )
 
     spark_submit = SparkSubmitOperator(
