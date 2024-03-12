@@ -36,14 +36,14 @@ services:
     networks:
       - hadoop_network
 
-  airflow-init:
-    <<: *airflow-common
-    container_name: airflow_init
-    entrypoint: /bin/bash
-    command:
-      - -c
-      - airflow users list || ( airflow db init && airflow db upgrade && airflow users create --role Admin --username airflow --password airflow --email airflow@airflow.com --firstname airflow --lastname airflow )
-    restart: on-failure
+  # airflow-init:
+  #   <<: *airflow-common
+  #   container_name: airflow_init
+  #   entrypoint: /bin/bash
+  #   command:
+  #     - -c
+  #     - airflow users list || ( airflow db init && airflow db upgrade && airflow users create --role Admin --username airflow --password airflow --email airflow@airflow.com --firstname airflow --lastname airflow )
+  #   restart: on-failure
 
   airflow-webserver:
     <<: *airflow-common
