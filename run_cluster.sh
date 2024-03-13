@@ -24,13 +24,13 @@ $DOCKER build \
   -t localhost/hadoop-base:3.3.6 -f Dockerfile-hadoop .
 
 # running image to container, -d to run it in daemon mode
-$DOCKER_COMPOSE -f docker-compose-hadoop.yml up -d
+$DOCKER_COMPOSE -p hadoop -f docker-compose-hadoop.yml up -d
 
 # Run Airflow Cluster
 if [[ "$PWD" != "airflow" ]]; then
   cd airflow && ./run_airflow.sh && cd ..
 fi
 
-$DOCKER_COMPOSE -f docker-compose-airflow.yml up -d
+$DOCKER_COMPOSE -p airflow -f docker-compose-airflow.yml up -d
 
 echo "Current dir is $PWD"

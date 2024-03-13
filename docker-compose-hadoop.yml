@@ -69,6 +69,21 @@ services:
     networks:
       - hadoop_network
 
+  nodemanager2:
+    image: localhost/nodemanager
+    build: ./nodemanager
+    container_name: nodemanager2
+    depends_on:
+      - namenode
+      - datanode1
+      - datanode2
+    env_file:
+      - ./hadoop.env
+    ports:
+      - 8043:8042
+    networks:
+      - hadoop_network
+
   datanode1:
     image: localhost/datanode
     build: ./datanode
