@@ -2,20 +2,9 @@ from pyspark import SparkConf, SparkContext
 
 
 # Load Movie Names from u.item
-def loadMovieNames():
-    # Initialize empty dictionary
-    movieNames = {}
-
-    # Open with context
-    with open("hdfs://namenode:8020/user/root/input/u.item", encoding="ISO-8859-1") as f:
-        for line in f:
-            # split line by separator |
-            fields = line.split("|")
-            # fill dict using movie id as a key and movie name as a value
-            movieNames[int(fields[0])] = fields[1]
-
-    return movieNames
-
+def loadMovieNames(line):
+    fields = line.split("|")
+    return (int(fields[0]), fields[1])
 
 # Take each line of u.data and convert it to (movieID, (rating, 1.0))
 def parseInput(line):
@@ -30,14 +19,15 @@ if __name__ == "__main__":
     conf = SparkConf().setAppName("WorstMovies")
     sc = SparkContext.getOrCreate(conf=conf)
 
-    # Load up our movie ID -> movie name lookup table
-    movieNames = loadMovieNames()
 
     # Load up the raw u.data file
     lines = sc.textFile("hdfs://namenode:8020/user/root/input/u.data")
 
     # Convert to (movieID, (rating, 1.0))
     movieRatings = lines.map(parseInput)
+
+    # Load up our movie ID -> movie name lookup table
+    movieNames = sc.textFile("hdfs://namenode:8020/user/root/input/u.item").map(loadMovieNames)
 
     # Reduce to (movieID, (sumOfRatings, totalRatings))
     ratingTotalsAndCount = movieRatings.reduceByKey(
@@ -53,8 +43,10 @@ if __name__ == "__main__":
     sortedMovies = averageRatings.sortBy(lambda x: x[1])
 
     # Take the top 10 results
-    results = sortedMovies.take(10)
+    # results = sortedMovies.take(10)
+    results = sortedMovies.join(movieNames).take(10)
+    # print(results)
 
     # Print them out:
     for result in results:
-        print(movieNames[result[0]], result[1])
+        print(result[0], result[1])

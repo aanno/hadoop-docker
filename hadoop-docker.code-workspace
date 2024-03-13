@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"p1c2u.docker-compose",
+			"formulahendry.docker-extension-pack",
+			"formulahendry.docker-explorer",
+			"mshdinsight.azure-hdinsight",
+			"cweijan.vscode-postgresql-client2"
+		],
+		"unwantedRecommendations": []
+	}
+}
