@@ -4,6 +4,8 @@
 
 This is just for learning intention, not recomended for production. Use Hortonworks or Cloudera for production instead or you can just setup using cloud service. In GCP there is Dataproc or in AWS there is EMR (Elastic Map Reduce).
 
+The spark standalone cluster is _not_ needed (spark runs on yarn in this example) and hence eliminated.
+
 ## Download binary
 
 - This Dockerfile build from existing hadoop image but, if you want to download the binary first instead build your own Dockerfile image :

@@ -8,7 +8,7 @@ This project will setup
   + yarn config
   + including HDFS (hadoop distributed file system)
 * airflow cluster (init server, scheduler, webserver)
-* spark cluster (1 master, 2 workers)
+* spark standalone cluster (1 master, 2 workers) _obsolete_
 * postgreSQL DB server (needed for airflow)
 
 It also contains some (minimal) examples (map-reduce tasks, data).
@@ -132,7 +132,7 @@ spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arr
   + login with airflow/airflow
   + DAGs - Cluster Activity - Datasets - Security - Browse - Admin - Docs
 
-### Spark
+### Spark standalone (deprecated)
 
 * master: http://localhost:9090
   workers - running applications - completed applications
@@ -144,6 +144,8 @@ spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arr
 
 * 5432: PostgreSQL server
 * 8020: Hadoop IPC port
+
+Deprecated:
 * 7000: Spark worker port
 * 6066: Spark master REST port
 * 7077: Spark master port

@@ -33,9 +33,4 @@ fi
 
 $DOCKER_COMPOSE -f docker-compose-airflow.yml up -d
 
-# Run Spark Cluster
-if [[ "$PWD" != "spark" ]]; then
-  cd spark && ./start-cluster.sh && cd ..
-fi
-
 echo "Current dir is $PWD"
