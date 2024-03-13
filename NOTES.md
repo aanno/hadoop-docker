@@ -116,8 +116,9 @@ spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/aver
 
 ### Spark
 
-* master: http://localhost:9090 
+* master: http://localhost:9090
   workers - running applications - completed applications
+* master for `spark-submit`: spark://spark-master:7077
 * worker1: http://localhost:9091 - running executors
 * worker2: http://localhost:9092 - running executors
 
@@ -125,7 +126,9 @@ spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/aver
 
 * 5432: PostgreSQL server
 * 8020: Hadoop IPC port
-* 7000: Spark (but what?)
+* 7000: Spark worker port
+* 6066: Spark master REST port
+* 7077: Spark master port
 
 ## References
 
@@ -135,3 +138,4 @@ spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/aver
 * [run spark on yarn](https://spark.apache.org/docs/latest/running-on-yarn.html)
 * [monitoring spark and history server](https://spark.apache.org/docs/3.5.1/monitoring.html)
 * [spark history server](https://github.com/rangareddy/spark-history-server-docker)
+* [spark ports](https://spark.apache.org/docs/latest/security.html#configuring-ports-for-network-security)

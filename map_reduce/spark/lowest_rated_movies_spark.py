@@ -7,7 +7,7 @@ def loadMovieNames():
     movieNames = {}
 
     # Open with context
-    with open("/hadoop-data/input/u.item", encoding="ISO-8859-1") as f:
+    with open("hdfs://namenode:8020/user/root/input/u.item", encoding="ISO-8859-1") as f:
         for line in f:
             # split line by separator |
             fields = line.split("|")
