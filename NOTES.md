@@ -75,6 +75,24 @@ spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/lowe
 spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/average_price.py
 ```
 
+Run on yarn cluster:
+
+```bash
+spark-submit --master yarn --deploy-mode cluster --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py
+```
+
+Run on sparks standalone cluster:
+
+```bash
+spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py
+# Error:
+SparkException: Cluster deploy mode is currently not supported for python applications on standalone clusters.
+
+spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py
+```
+
+```bash
+```
 
 ```bash
 ```
