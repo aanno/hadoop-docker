@@ -14,6 +14,10 @@ SPARK_VERSION=spark-3.5.1
 SPARK_URL=https://downloads.apache.org/spark/${SPARK_VERSION}/${SPARK_VERSION}-bin-hadoop3.tgz
 ! [ -f ./tmp/spark.tar.gz ] && curl -fSL "${SPARK_URL}" -o ./tmp/spark.tar.gz
 
+HIVE_VERSION=3.1.3
+HIVE_URL=https://dlcdn.apache.org/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
+! [ -f ./tmp/hive.tar.gz ] && curl -fSL "${HIVE_URL}" -o ./tmp/hive.tar.gz
+
 # create new network
 $DOCKER network create hadoop_network
 
