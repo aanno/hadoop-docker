@@ -17,6 +17,8 @@ It currently does _not_ contain:
 
 * an spark history server
 
+Also refer to https://blog.det.life/developing-multi-nodes-hadoop-spark-cluster-and-airflow-in-docker-compose-part-e75ff6942ef
+
 ## Running hadoop command
 
 Log into one of the airflow container
