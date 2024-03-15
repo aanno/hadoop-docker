@@ -54,12 +54,6 @@ py4j.protocol.Py4JJavaError: An error occurred while calling o22.partitions.
 
 
 ```bash
-airflow@49fa94215d08:~$ hadoop fs -mkdir hdfs://namenode:8020/user/root/input
-WARNING: HADOOP_PREFIX has been replaced by HADOOP_HOME. Using value of HADOOP_PREFIX.
-airflow@49fa94215d08:~$ hadoop fs -copyFromLocal /hadoop-data/input/* hdfs://namenode:8020/user/root/input/
-WARNING: HADOOP_PREFIX has been replaced by HADOOP_HOME. Using value of HADOOP_PREFIX.
-airflow@49fa94215d08:~$ hadoop fs -ls hdfs://namenode:8020/user/root/input
-WARNING: HADOOP_PREFIX has been replaced by HADOOP_HOME. Using value of HADOOP_PREFIX.
 Found 5 items
 -rw-r--r--   3 airflow supergroup    1593386 2024-03-11 17:31 hdfs://namenode:8020/user/root/input/Sales.csv
 -rw-r--r--   3 airflow supergroup      19200 2024-03-11 17:31 hdfs://namenode:8020/user/root/input/benda.txt

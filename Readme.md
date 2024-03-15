@@ -53,7 +53,6 @@ Please start everything from `run_cluster.sh` because the base image created fro
 
 * Not for production use, as authentication and security are missing.
 * OCI container images do not support `HEALTHCHECK`. Hence podman ignores this.
-* WARNING: HADOOP_PREFIX has been replaced by HADOOP_HOME. Using value of HADOOP_PREFIX.
 * `db init` is deprecated.  Use `db migrate` instead to migrate the db and/or 
   airflow connections create-default-connections to create the default connections.
 * Port forwarding to localhost does not rewrite links in html

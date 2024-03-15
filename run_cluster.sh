@@ -24,7 +24,8 @@ SPARK_URL=https://downloads.apache.org/spark/${SPARK_VERSION}/${SPARK_VERSION}-b
 
 # HIVE DOWNLOAD
 
-HIVE_VERSION=3.1.3
+# HIVE3 needs jdk8 and is out of scope
+HIVE_VERSION=4.0.0-beta-1
 HIVE_URL=https://dlcdn.apache.org/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 ! [ -f ./tmp/hive.tar.gz ] && curl -fSL "${HIVE_URL}" -o ./tmp/hive.tar.gz
 ! [ -f ./tmp/hive.tar.gz.asc ] && curl -fSL "${HIVE_URL}.asc" -o ./tmp/hive.tar.gz.asc
@@ -35,7 +36,7 @@ FLINK_VERSION=1.18.1
 SCALA_VERSION=2.12
 FLINK_URL=https://dlcdn.apache.org/flink/flink-$FLINK_VERSION/flink-$FLINK_VERSION-bin-scala_$SCALA_VERSION.tgz
 ! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
-! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
+! [ -f ./tmp/flink.tar.gz.asc ] && curl -fSL "${FLINK_URL}.asc" -o ./tmp/flink.tar.gz.asc
 
 # create new network
 $DOCKER network create hadoop_network
