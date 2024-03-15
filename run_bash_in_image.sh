@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -xehuv
+
 # ENVIRONMENT AND DIRECTORIES
 
 source cluster.env

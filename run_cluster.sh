@@ -1,12 +1,14 @@
 #!/bin/bash
 
+set -xehuv
+
 # ENVIRONMENT AND DIRECTORIES
 
 source cluster.env
 
 mkdir -p ./tmp/pip ./tmp/var/cache/apt/archives/partial || true
 # containers write into logs and output
-sudo chmod -R a+w logs output tmp
+sudo chmod -R a+w logs output tmp || true
 
 # HADOOP DOWNLOAD
 
@@ -39,7 +41,7 @@ FLINK_URL=https://dlcdn.apache.org/flink/flink-$FLINK_VERSION/flink-$FLINK_VERSI
 ! [ -f ./tmp/flink.tar.gz.asc ] && curl -fSL "${FLINK_URL}.asc" -o ./tmp/flink.tar.gz.asc
 
 # create new network
-$DOCKER network create hadoop_network
+$DOCKER network create hadoop_network || true
 
 # build docker image with image name hadoop-base:3.3.6
 $DOCKER build \
