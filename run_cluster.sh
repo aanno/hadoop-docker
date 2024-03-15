@@ -1,22 +1,41 @@
 #!/bin/bash
 
+# ENVIRONMENT AND DIRECTORIES
+
 source cluster.env
 
 mkdir -p ./tmp/pip ./tmp/var/cache/apt/archives/partial || true
 # containers write into logs and output
-chmod -R a+w logs output
+sudo chmod -R a+w logs output tmp
+
+# HADOOP DOWNLOAD
 
 HADOOP_VERSION=3.3.6
 HADOOP_URL=https://downloads.apache.org/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
-! [ -f ./tmp/hadoop.tar.gz ] && curl -fSL "$HADOOP_URL" -o ./tmp/hadoop.tar.gz
+! [ -f ./tmp/hadoop.tar.gz ] && curl -fSL "${HADOOP_URL}" -o ./tmp/hadoop.tar.gz
+! [ -f ./tmp/hadoop.tar.gz.asc ] && curl -fSL "${HADOOP_URL}.asc" -o ./tmp/hadoop.tar.gz.asc
+
+# SPARK DOWNLOAD
 
 SPARK_VERSION=spark-3.5.1
 SPARK_URL=https://downloads.apache.org/spark/${SPARK_VERSION}/${SPARK_VERSION}-bin-hadoop3.tgz
 ! [ -f ./tmp/spark.tar.gz ] && curl -fSL "${SPARK_URL}" -o ./tmp/spark.tar.gz
+! [ -f ./tmp/spark.tar.gz.asc ] && curl -fSL "${SPARK_URL}.asc" -o ./tmp/spark.tar.gz.asc
+
+# HIVE DOWNLOAD
 
 HIVE_VERSION=3.1.3
 HIVE_URL=https://dlcdn.apache.org/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERSION-bin.tar.gz
 ! [ -f ./tmp/hive.tar.gz ] && curl -fSL "${HIVE_URL}" -o ./tmp/hive.tar.gz
+! [ -f ./tmp/hive.tar.gz.asc ] && curl -fSL "${HIVE_URL}.asc" -o ./tmp/hive.tar.gz.asc
+
+# FLINK DOWNLOAD
+
+FLINK_VERSION=1.18.1
+SCALA_VERSION=2.12
+FLINK_URL=https://dlcdn.apache.org/flink/flink-$FLINK_VERSION/flink-$FLINK_VERSION-bin-scala_$SCALA_VERSION.tgz
+! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
+! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
 
 # create new network
 $DOCKER network create hadoop_network

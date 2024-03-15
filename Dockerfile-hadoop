@@ -20,6 +20,7 @@ RUN \
 # ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 COPY --from=jdk /usr/local/openjdk-11 /usr/lib/jvm/java-11-openjdk-arm64/
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64/
+ENV PATH=$JAVA_HOME/bin:$PATH
 
 # --------------------------------------------------------
 # HADOOP
@@ -85,6 +86,20 @@ RUN \
     set -x \
     && tar -xvzf /tmp/hive.tar.gz -C /opt/ \
     && mv /opt/apache-hive-${HIVE_VERSION}-bin ${HIVE_HOME}
+
+# --------------------------------------------------------
+# FLINK
+# --------------------------------------------------------
+
+ENV FLINK_VERSION=1.18.1
+ENV SCALA_VERSION=2.12
+ENV FLINK_HOME=/opt/flink-${FLINK_VERSION}
+ENV PATH=$FLINK_HOME/bin:$PATH
+
+RUN \
+    set -x \
+    && tar -xvzf /tmp/flink.tar.gz -C /opt/
+    # && mv /opt/apache-hive-${FLINK_VERSION}-bin-scala_${SCALA_VERSION}} ${HIVE_HOME}
 
 #=========
 # INSTALL PYTHON DEPS
