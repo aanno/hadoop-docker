@@ -114,7 +114,7 @@ schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
 ### Hadoop
 
 * namenode: http://localhost:9870 (DFS health)
-  overview - datanotes - volume failures - snapshots - startup progress
+  overview - datanodes - volume failures - snapshots - startup progress
 * resource manager: http://localhost:8089
   + about: cluster metrics - cluster node metrics - scheduler metrics
   + nodes
@@ -139,6 +139,15 @@ schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
   + login with airflow/airflow
   + DAGs - Cluster Activity - Datasets - Security - Browse - Admin - Docs
 
+### Hive
+
+* hiveserver2: http://localhost:10002
+  Home, Local logs, Metrics Dump, Hive Configuration, Stack Trace, Llap Daemons, Configure logging
+
+Reference:
+
+* [llap](https://cwiki.apache.org/confluence/display/hive/llap)
+
 ### Spark standalone (deprecated)
 
 * master: http://localhost:9090
@@ -151,6 +160,7 @@ schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
 
 * 5432: PostgreSQL server
 * 8020: Hadoop IPC port
+* 10000: Service for programatically (Thrift/JDBC) connecting to Hive
 
 Deprecated:
 * 7000: Spark worker port
@@ -158,6 +168,10 @@ Deprecated:
 * 7077: Spark master port
 
 ## References
+
+### Hadoop
+
+* [ambari](https://ambari.apache.org/) hadoop management: provision, manage, monitor
 
 ### Yarn
 
