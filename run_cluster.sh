@@ -40,6 +40,12 @@ FLINK_URL=https://dlcdn.apache.org/flink/flink-$FLINK_VERSION/flink-$FLINK_VERSI
 ! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
 ! [ -f ./tmp/flink.tar.gz.asc ] && curl -fSL "${FLINK_URL}.asc" -o ./tmp/flink.tar.gz.asc
 
+# POSTGRESQL JDBC DOWNLOAD
+
+PG_JDBC_VERSION=42.7.3
+PG_JDBC_URL=https://jdbc.postgresql.org/download/postgresql-$PG_JDBC_VERSION.jar
+! [ -f ./tmp/postgresql.jar ] && curl -fSL "${PG_JDBC_URL}" -o ./tmp/postgresql.jar
+
 # create new network
 $DOCKER network create hadoop_network || true
 
