@@ -87,8 +87,19 @@ SparkException: Cluster deploy mode is currently not supported for python applic
 spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py
 ```
 
+Init hive:
+
 ```bash
+hdfs dfs -mkdir /tmp/hive
+hdfs dfs -chmod 777 /tmp/hive
+schematool -initSchema -dbType derby -verbose || true
+schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
 ```
+
+* https://cwiki.apache.org/confluence/display/Hive/GettingStarted
+* https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool
+* https://medium.com/@malinda.ashan/configure-apache-hive-to-use-postgres-as-metastore-fae1703e29d5
+* https://stackoverflow.com/questions/34196302/the-root-scratch-dir-tmp-hive-on-hdfs-should-be-writable-current-permissions
 
 ```bash
 ```

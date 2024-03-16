@@ -46,7 +46,10 @@
 
         <property>
                 <name>yarn.resourcemanager.scheduler.class</name>
-                <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+                <!-- https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started -->
+                <!-- https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/FairScheduler.html -->
+                <!-- value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value -->
+                <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
         </property>
 
         <property>
