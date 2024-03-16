@@ -31,6 +31,12 @@
     <value>yarn</value>
   </property>
   <property>
+    <name>hive.metastore.uris</name>
+    <value>thrift://hivemetastore:9083</value>
+    <description>Thrift URI for the remote metastore. Used by metastore client to connect to remote
+      metastore.</description>
+  </property>
+  <property>
     <name>datanucleus.schema.autoCreateAll</name>
     <value>true</value>
     <description>Auto creates necessary schema on a startup if one doesn't exist. Set this to false,
@@ -106,5 +112,23 @@
   <property>
     <name>datanucleus.autoCreateTables</name>
     <value>true</value>
+  </property>
+  <!-- https://issues.apache.org/jira/browse/HIVE-19740 -->
+  <property>
+    <name>hive.metastore.event.db.notification.api.auth</name>
+    <value>false</value>
+    <description>
+      Should metastore do authorization against database notification related APIs such as get_next_notification.
+      If set to true, then only the superusers in proxy settings have the permission
+    </description>
+  </property>
+  <!-- this 2 properties have not work (or should they be in hadoop-site.xml (?) -->
+  <property>
+    <name>hadoop.proxyuser.hive.hosts</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.hive.groups</name>
+    <value>*</value>
   </property>
 </configuration>

@@ -83,7 +83,8 @@ ENV PATH=$HIVE_HOME/bin:$PATH
 RUN \
     set -x \
     && tar -xvzf /tmp/hive.tar.gz -C /opt/ \
-    && mv /opt/apache-hive-${HIVE_VERSION}-bin ${HIVE_HOME}
+    && mv /opt/apache-hive-${HIVE_VERSION}-bin ${HIVE_HOME} \
+    && cp /tmp/postgresql.jar ${HIVE_HOME}/lib
 
 # --------------------------------------------------------
 # FLINK

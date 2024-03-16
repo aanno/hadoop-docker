@@ -143,6 +143,7 @@ schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
 
 * hiveserver2: http://localhost:10002
   Home, Local logs, Metrics Dump, Hive Configuration, Stack Trace, Llap Daemons, Configure logging
+* Main hive log defaults to `/tmp/<user>/hive.log` where <user> is the intern docker user running hive
 
 Reference:
 
@@ -161,6 +162,7 @@ Reference:
 * 5432: PostgreSQL server
 * 8020: Hadoop IPC port
 * 10000: Service for programatically (Thrift/JDBC) connecting to Hive
+* 9083: Thrift connecting to hivemetastore
 
 Deprecated:
 * 7000: Spark worker port
@@ -172,6 +174,7 @@ Deprecated:
 ### Hadoop
 
 * [ambari](https://ambari.apache.org/) hadoop management: provision, manage, monitor
+* [hue](https://gethue.com/) SQL Assistant for Databases & Data Warehouses
 
 ### Yarn
 

@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  hive4:
+    image: localhost/hadoop-base:3.3.6
+    ports:
+      - 10000:10000
+      - 10002:10002
+    container_name: hive4
+    command: /opt/hive/bin/hive --service hiveserver2
+    volumes:
+      - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml:z,ro
+    depends_on:
+      - hivemetastore
+      - postgres
+    restart: always
+
+  hivemetastore:
+    image: localhost/hadoop-base:3.3.6
+    ports:
+      - 9083:9083
+    container_name: hivemetastore
+    command: /opt/hive/bin/hive --service metastore
+    volumes:
+      - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml:z,ro
+    depends_on:
+      - postgres
+    restart: always
+
+networks:
+  hadoop_network:
+    name: hadoop_network
+    external: true

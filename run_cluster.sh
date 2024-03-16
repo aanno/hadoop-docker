@@ -40,11 +40,18 @@ FLINK_URL=https://dlcdn.apache.org/flink/flink-$FLINK_VERSION/flink-$FLINK_VERSI
 ! [ -f ./tmp/flink.tar.gz ] && curl -fSL "${FLINK_URL}" -o ./tmp/flink.tar.gz
 ! [ -f ./tmp/flink.tar.gz.asc ] && curl -fSL "${FLINK_URL}.asc" -o ./tmp/flink.tar.gz.asc
 
-# POSTGRESQL JDBC DOWNLOAD
+# HUDI DOWNLOAD
 
 PG_JDBC_VERSION=42.7.3
 PG_JDBC_URL=https://jdbc.postgresql.org/download/postgresql-$PG_JDBC_VERSION.jar
 ! [ -f ./tmp/postgresql.jar ] && curl -fSL "${PG_JDBC_URL}" -o ./tmp/postgresql.jar
+
+# HUDI SOURCE DOWNLOAD
+
+HUDI_VERSION=1.0.0-beta1
+HUDI_URL=https://dlcdn.apache.org/hudi/$HUDI_VERSION/hudi-$HUDI_VERSION.src.tgz
+! [ -f ./tmp/hudi.src.tar.gz ] && curl -fSL "${HUDI_URL}" -o ./tmp/hudi.src.tar.gz
+! [ -f ./tmp/hudi.src.tar.gz.asc ] && curl -fSL "${HUDI_URL}.asc" -o ./tmp/hudi.src.tar.gz.asc
 
 # create new network
 $DOCKER network create hadoop_network || true

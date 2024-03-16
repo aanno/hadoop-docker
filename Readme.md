@@ -59,7 +59,7 @@ Please start everything from `run_cluster.sh` because the base image created fro
 
 ## To Do
 
-- Add Hive configuration files
+* Add Hive configuration files
   - `hive-site.xml`
   - `beeline-log4j2.properties`
   - `hive-exec-log4j2.properties`
@@ -67,3 +67,6 @@ Please start everything from `run_cluster.sh` because the base image created fro
   - `llap-daemon-log4j2.properties`
   - `ivysettings.xml`
   - `hive-env.sh`
+* Allow access to all logging, e.g. to `/tmp/<user>/hive.log` from outside of containers
+* postgresql database hivemetastore is not automatically created
+* postgresql data hivemetastore should use a separate user
