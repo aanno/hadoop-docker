@@ -113,6 +113,15 @@
     <name>datanucleus.autoCreateTables</name>
     <value>true</value>
   </property>
+  <!-- https://stackoverflow.com/questions/52994585/user-is-not-allowed-to-impersonate-anonymous-state-08s01-code-0-org-apache-had -->
+  <property>
+    <name>hive.server2.enable.doAs</name>
+    <value>false</value>
+    <description>
+      Setting this property to true will have HiveServer2 execute
+      Hive operations as the user making the calls to it.
+    </description>
+  </property>
   <!-- https://issues.apache.org/jira/browse/HIVE-19740 -->
   <property>
     <name>hive.metastore.event.db.notification.api.auth</name>
