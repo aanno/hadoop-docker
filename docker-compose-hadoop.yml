@@ -1,6 +1,21 @@
 version: "3.7"
 
 services:
+  postgres:
+    # https://github.com/docker-library/docs/blob/master/postgres/README.md
+    image: docker.io/postgres:13
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+      - POSTGRES_PORT=5432
+    ports:
+      - 5432:5432
+    volumes:
+      - ./conf/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/:z,ro
+    networks:
+      - hadoop_network
+
   namenode:
     image: localhost/namenode
     build: ./namenode

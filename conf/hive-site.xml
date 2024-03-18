@@ -69,8 +69,8 @@
   </property>
   <property>
     <name>hive.metastore.warehouse.dir</name>
-    <value>/opt/hive/warehouse</value>
-    <description>location of default database for the warehouse</description>
+    <value>/user/root/warehouse</value>
+    <description>hdfs location of default database for the warehouse</description>
   </property>
   <property>
     <name>hive.metastore.db.type</name>
