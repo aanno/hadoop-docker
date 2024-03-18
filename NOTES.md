@@ -90,16 +90,34 @@ spark-submit --master spark://spark-master:7077 --deploy-mode cluster --name arr
 Init hive:
 
 ```bash
-hdfs dfs -mkdir /tmp/hive
-hdfs dfs -chmod 777 /tmp/hive
+hdfs dfs -mkdir /tmp/hive /user/hive
+hdfs dfs -chmod 777 /tmp/hive /user/hive
 schematool -initSchema -dbType derby -verbose || true
-schematool -initSchemaTo 4.0.0-beta-1 -dbType derby -verbose
+schematool -initSchemaTo 4.0.0-beta-1 -dbType postgres -verbose
 ```
 
 * https://cwiki.apache.org/confluence/display/Hive/GettingStarted
 * https://cwiki.apache.org/confluence/display/Hive/Hive+Schema+Tool
 * https://medium.com/@malinda.ashan/configure-apache-hive-to-use-postgres-as-metastore-fae1703e29d5
 * https://stackoverflow.com/questions/34196302/the-root-scratch-dir-tmp-hive-on-hdfs-should-be-writable-current-permissions
+
+Hive is really picky about permission and I do not understand its user 
+management. The following may help:
+
+* [hive quickstart with docker](https://hive.apache.org/developement/quickstart/)
+  + [docker image description](https://hub.docker.com/r/apache/hive)
+* [new user in hadoop](https://community.cloudera.com/t5/Support-Questions/How-to-create-user-in-hadoop/m-p/234730)
+  + https://data-flair.training/forums/topic/how-to-create-user-in-hadoop/
+* [Managed vs. External Tables](https://cwiki.apache.org/confluence/display/Hive/Managed+vs.+External+Tables) you normally want managed tables
+  + https://docs.cloudera.com/runtime/7.2.7/using-hiveql/topics/hive_managed_location.html
+* [Hive Authorization](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Authorization) is normally turned off
+  + [Hive query should run as user 'hive'](https://community.cloudera.com/t5/Support-Questions/hive-create-table-error/td-p/269790)
+  + [impersonate and proxy problems](https://stackoverflow.com/questions/52994585/user-is-not-allowed-to-impersonate-anonymous-state-08s01-code-0-org-apache-had) probably misleading!
+  + https://docs.cloudera.com/cdp-private-cloud-base/latest/securing-hive/topics/hive_hive_authorization_models.html
+* [run Hive on Yarn (directly)](https://community.cloudera.com/t5/Community-Articles/Running-docker-containerized-services-in-HDP-3-x-Part2-Hive/ta-p/244224)
+* [hive enable concurrency](https://community.cloudera.com/t5/Support-Questions/Hive-Can-we-enable-concurrency-support-without-enabling-ACID/m-p/194845)
+  + concurrency _needs_ a zookeeper server
+* [dynamic partitions](https://community.cloudera.com/t5/Support-Questions/Hive-INSERT-failing-for-a-large-table/td-p/169441)
 
 ```bash
 ```

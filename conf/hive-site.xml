@@ -18,6 +18,7 @@
 <configuration>
   <property>
     <name>hive.execution.engine</name>
+    <!-- value>mr</value -->
     <value>spark</value>
     <description>
       Expects one of [mr, tez].
