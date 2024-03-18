@@ -174,6 +174,10 @@ Reference:
 * master for `spark-submit`: spark://spark-master:7077
 * worker1: http://localhost:9091 - running executors
 * worker2: http://localhost:9092 - running executors
+* resourcemanager:8030 scheduler
+* resourcemanager:8031 resource-tracker
+* resourcemanager:8032 resourcemanager
+* resourcemanager: http://localhost:8089
 
 ### Other used (and exposed) ports
 
