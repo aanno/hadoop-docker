@@ -24,8 +24,8 @@ The spark standalone cluster is _not_ needed (spark runs on yarn in this example
 
 1. There is `ratings_breakdown.py` python file in `map_reduce` directory, we can run this file on a local python mode or in Hadoop world
 2. For python mode local run command `python3 map_reduce/ratings_breakdown.py input/u.data`
-3. To run this file in Hadoop run this command `python3 map_reduce/ratings_breakdown.py -r hadoop --hadoop-streaming-jar /opt/hadoop-3.3.6/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar input/u.data`
-4. Path `/opt/hadoop-3.3.6/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar` might be different for users or if you are using different version of Hadoop, run command `find / hadoop-streaming-$(HADOOP_VERSION).jar` to find it
+3. To run this file in Hadoop run this command `python3 map_reduce/ratings_breakdown.py -r hadoop --hadoop-streaming-jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar input/u.data`
+4. Path `/opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar` might be different for users or if you are using different version of Hadoop, run command `find / hadoop-streaming-$(HADOOP_VERSION).jar` to find it
 
 ## Running with hadoop command
 
@@ -34,7 +34,7 @@ The spark standalone cluster is _not_ needed (spark runs on yarn in this example
 3. And ready to run
 
 ```
-hadoop jar /opt/hadoop-3.3.6/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar -file /hadoop-data/map_reduce/word_count/mapper.py -mapper "python3 mapper.py" -file /hadoop-data/map_reduce/word_count/reducer.py -reducer "python3 reducer.py" -input input/words.txt -output output_word_count
+hadoop jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar -file /hadoop-data/map_reduce/word_count/mapper.py -mapper "python3 mapper.py" -file /hadoop-data/map_reduce/word_count/reducer.py -reducer "python3 reducer.py" -input input/words.txt -output output_word_count
 ```
 
 ## Hadoop Configurations

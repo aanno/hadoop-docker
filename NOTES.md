@@ -30,7 +30,7 @@ docker exec -it <containerid> bash
 Then execute:
 
 ```bash
-python3 /hadoop-data/map_reduce/ratings_breakdown.py -r hadoop --hadoop-streaming-jar /opt/hadoop-3.3.6/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar /hadoop-data/input/u.data
+python3 /hadoop-data/map_reduce/ratings_breakdown.py -r hadoop --hadoop-streaming-jar /opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.3.6.jar /hadoop-data/input/u.data
 ```
 
 TODO:
@@ -43,9 +43,9 @@ Both jobs fail. Why?
 
 airflow.exceptions.AirflowException: Cannot execute: spark-submit --master yarn --name arrow-spark /hadoop-data/map_reduce/spark/lowest_rated_movies_spark.py. Error code is: 1.
 
-24/03/11 16:57:51 INFO Client: Uploading resource file:/opt/spark-3.5.1/python/lib/pyspark.zip -> hdfs://namenode:8020/user/airflow/.sparkStaging/application_1710172294329_0006/pyspark.zip
+24/03/11 16:57:51 INFO Client: Uploading resource file:/opt/spark/python/lib/pyspark.zip -> hdfs://namenode:8020/user/airflow/.sparkStaging/application_1710172294329_0006/pyspark.zip
 
-  File "/opt/spark-3.5.1/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+  File "/opt/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
 py4j.protocol.Py4JJavaError: An error occurred while calling o22.partitions.
 : org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: hdfs://namenode:8020/user/root/input/u.data
         at org.apache.hadoop.mapred.FileInputFormat.singleThreadedListStatus(FileInputFormat.java:304)
