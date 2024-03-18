@@ -69,7 +69,7 @@
   </property>
   <property>
     <name>hive.metastore.warehouse.dir</name>
-    <value>/user/root/warehouse</value>
+    <value>/user/hive/warehouse</value>
     <description>hdfs location of default database for the warehouse</description>
   </property>
   <property>
@@ -116,7 +116,7 @@
   <!-- https://stackoverflow.com/questions/52994585/user-is-not-allowed-to-impersonate-anonymous-state-08s01-code-0-org-apache-had -->
   <property>
     <name>hive.server2.enable.doAs</name>
-    <value>false</value>
+    <value>true</value>
     <description>
       Setting this property to true will have HiveServer2 execute
       Hive operations as the user making the calls to it.

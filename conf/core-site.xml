@@ -33,4 +33,14 @@
                 <name>io.compression.codecs</name>
                 <value>org.apache.hadoop.io.compress.SnappyCodec</value>
         </property>
+
+        <!-- this 2 properties have not work (or should they be in hadoop-site.xml (?) -->
+        <property>
+                <name>hadoop.proxyuser.hive.hosts</name>
+                <value>*</value>
+        </property>
+        <property>
+                <name>hadoop.proxyuser.hive.groups</name>
+                <value>*</value>
+        </property>
 </configuration>

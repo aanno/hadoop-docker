@@ -2,12 +2,17 @@ version: "3.7"
 
 services:
   hive4:
-    image: localhost/hadoop-base:3.3.6
+    #image: localhost/hadoop-base:3.3.6
+    #image: docker.io/apache/hive:4.0.0-beta-1
+    image: localhost/hive:4.0.0-beta-1
     ports:
       - 10000:10000
       - 10002:10002
     container_name: hive4
     command: /opt/hive/bin/hive --service hiveserver2
+    environment:
+      DB_DRIVER: postgres
+      SERVICE_NAME: hiveserver2
     volumes:
       - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml:z,ro
     depends_on:
@@ -16,11 +21,16 @@ services:
     restart: always
 
   hivemetastore:
-    image: localhost/hadoop-base:3.3.6
+    # image: localhost/hadoop-base:3.3.6
+    # image: docker.io/apache/hive:4.0.0-beta-1
+    image: localhost/hive:4.0.0-beta-1
     ports:
       - 9083:9083
     container_name: hivemetastore
     command: /opt/hive/bin/hive --service metastore
+    environment:
+      DB_DRIVER: postgres
+      SERVICE_NAME: metastore
     volumes:
       - ./conf/hive-site.xml:/opt/hive/conf/hive-site.xml:z,ro
     depends_on:
